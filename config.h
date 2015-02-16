@@ -1,6 +1,10 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
 
+/*
+$ v /usr/include/X11/keysymdef.h /usr/include/X11/XF86keysym.h
+*/
+
 /* appearance */
 static const char font[]            = "Inconsolata 12";
 static const char normbordercolor[] = "#444444";
@@ -51,20 +55,32 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+/*
+static char dmenumon[2] = "0"; * component of dmenucmd, manipulated in spawn() *
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+*/
 static const char *termcmd[] = { "urxvt", "-e", "tmux", NULL };
 static const char *browsercmd[] = { "chromium", NULL };
 
 static const char *slockcmd[] = { "slock", NULL };
 static const char *logoutcmd[] = { "dmenu-file", "~/dotfiles/menus/logoff.txt", NULL };
 static const char *appscmd[] = { "dmenu-file", "~/dotfiles/menus/apps.txt", NULL };
+static const char *passcmd[] = { "dmenu-pass", NULL };
 
 /* media commands */
 static const char *vol_mute[] = { "dwm-volume", "mute", NULL };
 static const char *vol_down[] = { "dwm-volume", "down", NULL };
 static const char *vol_up[] = { "dwm-volume", "up", NULL };
+static const char *vol_mic[] = { "dwm-volume", "mic", NULL };
 
+static const char *bright_down[] = { "dwm-backlight", "down", NULL };
+static const char *bright_up[] = { "dwm-backlight", "up", NULL };
+static const char *bright_down_small[] = { "dwm-backlight", "down", "minor", NULL };
+static const char *bright_up_small[] = { "dwm-backlight", "up", "minor", NULL };
+
+static const char *cmus_prev[] = { "cmus-remote", "--prev", NULL };
+static const char *cmus_next[] = { "cmus-remote", "--next", NULL };
+static const char *cmus_pause[] = { "cmus-remote", "--pause", NULL };
 
 /* Function to shift the current view to the left/right.
  * http://lists.suckless.org/dev/att-7590/shiftview.c
@@ -84,11 +100,11 @@ shiftview(const Arg *arg) {
 
 static Key keys[] = {
 	/* modifier                     key            function        argument */
-	{ MODKEY,                       XK_p,          spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_p,          spawn,          {.v = appscmd } },
+	{ MODKEY,                       XK_p,          spawn,          {.v = appscmd } },
+	{ MODKEY|ShiftMask,             XK_p,          spawn,          {.v = passcmd } },
 	{ MODKEY,                       XK_Escape,     spawn,          {.v = slockcmd} },
 	{ MODKEY|ShiftMask,             XK_Escape,     spawn,          {.v = logoutcmd} },
-	{ MODKEY,                       XK_Return,     spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_Return,     spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_apostrophe, spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_b,          togglebar,      {0} },
 	{ MODKEY,                       XK_j,          focusstack,     {.i = +1 } },
@@ -97,7 +113,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,          incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,          setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,          setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_Return,     zoom,           {0} },
+	{ MODKEY,                       XK_Return,     zoom,           {0} },
 	{ MODKEY,                       XK_Tab,        view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,          killclient,     {0} },
 	{ MODKEY,                       XK_t,          setlayout,      {.v = &layouts[0]} },
@@ -126,9 +142,18 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Down,       shiftview,      {.i = +3} },
 	{ MODKEY|ShiftMask,             XK_q,          quit,           {0} },
 
-	{ 0,                            XF86XK_AudioMute, spawn,        {.v = vol_mute } },
-	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = vol_down } },
-	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = vol_up } },
+	{ 0,                            XF86XK_AudioMute,         spawn, {.v = vol_mute } },
+	{ 0,                            XF86XK_AudioLowerVolume,  spawn, {.v = vol_down } },
+	{ 0,                            XF86XK_AudioRaiseVolume,  spawn, {.v = vol_up } },
+	{ 0,                            XF86XK_AudioMicMute,      spawn, {.v = vol_mic } },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = bright_down } },
+	{ 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = bright_up } },
+	{ ShiftMask,                    XF86XK_MonBrightnessDown, spawn, {.v = bright_down_small } },
+	{ ShiftMask,                    XF86XK_MonBrightnessUp,   spawn, {.v = bright_up_small } },
+
+	{ MODKEY,                       XK_Home,                  spawn, {.v = cmus_prev } },
+	{ MODKEY,                       XK_End,                   spawn, {.v = cmus_next } },
+	{ MODKEY,                       XK_Delete,                spawn, {.v = cmus_pause } },
 };
 
 /* button definitions */

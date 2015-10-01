@@ -59,8 +59,10 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; * component of dmenucmd, manipulated in spawn() *
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 */
-static const char *termcmd[] = { "urxvt", "-e", "tmux", NULL };
+static const char *termcmd_tmux[] = { "urxvt", "-e", "tmux", NULL };
+static const char *termcmd[] = { "urxvt", NULL };
 static const char *browsercmd[] = { "chromium", NULL };
+static const char *browsercmd_incognito[] = { "chromium", "--incognito", NULL };
 
 static const char *slockcmd[] = { "slock", NULL };
 static const char *logoutcmd[] = { "dmenu-file", "~/dotfiles/menus/logoff.txt", NULL };
@@ -104,8 +106,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,          spawn,          {.v = passcmd } },
 	{ MODKEY,                       XK_Escape,     spawn,          {.v = slockcmd} },
 	{ MODKEY|ShiftMask,             XK_Escape,     spawn,          {.v = logoutcmd} },
-	{ MODKEY|ShiftMask,             XK_Return,     spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_semicolon,  spawn,          {.v = termcmd_tmux } },
+	{ MODKEY|ShiftMask,             XK_semicolon,  spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_apostrophe, spawn,          {.v = browsercmd } },
+	{ MODKEY|ShiftMask,             XK_apostrophe, spawn,          {.v = browsercmd_incognito } },
 	{ MODKEY,                       XK_b,          togglebar,      {0} },
 	{ MODKEY,                       XK_j,          focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,          focusstack,     {.i = -1 } },

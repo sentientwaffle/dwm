@@ -65,20 +65,21 @@ static const char *browsercmd[] = { "chromium", NULL };
 static const char *browsercmd_incognito[] = { "chromium", "--incognito", NULL };
 
 static const char *slockcmd[] = { "slock", NULL };
-static const char *logoutcmd[] = { "dmenu-file", "~/dotfiles/menus/logoff.txt", NULL };
-static const char *appscmd[] = { "dmenu-file", "~/dotfiles/menus/apps.txt", NULL };
+static const char *logoutcmd[] = { "dmenu-file", "~/Code/dotfiles/menus/logoff.txt", NULL };
+static const char *appscmd[] = { "dmenu-file", "~/Code/dotfiles/menus/apps.txt", NULL };
 static const char *passcmd[] = { "dmenu-pass", NULL };
 
 /* media commands */
-static const char *vol_mute[] = { "dwm-volume", "mute", NULL };
-static const char *vol_down[] = { "dwm-volume", "down", NULL };
-static const char *vol_up[] = { "dwm-volume", "up", NULL };
-static const char *vol_mic[] = { "dwm-volume", "mic", NULL };
+static const char *vol_mute[] = { "dm-volume", "mute", NULL };
+static const char *vol_down[] = { "dm-volume", "down", NULL };
+static const char *vol_up[] = { "dm-volume", "up", NULL };
+static const char *vol_mic[] = { "dm-volume", "mic", NULL };
 
-static const char *bright_down[] = { "dwm-backlight", "down", NULL };
-static const char *bright_up[] = { "dwm-backlight", "up", NULL };
-static const char *bright_down_small[] = { "dwm-backlight", "down", "minor", NULL };
-static const char *bright_up_small[] = { "dwm-backlight", "up", "minor", NULL };
+static const char *bright_down[] = { "dm-backlight", "down", NULL };
+static const char *bright_up[] = { "dm-backlight", "up", NULL };
+static const char *bright_down_small[] = { "dm-backlight", "down", "minor", NULL };
+static const char *bright_up_small[] = { "dm-backlight", "up", "minor", NULL };
+static const char *toggle_multihead[] = { "dm-multihead", NULL };
 
 static const char *cmus_prev[] = { "cmus-remote", "--prev", NULL };
 static const char *cmus_next[] = { "cmus-remote", "--next", NULL };
@@ -154,6 +155,7 @@ static Key keys[] = {
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = bright_up } },
 	{ ShiftMask,                    XF86XK_MonBrightnessDown, spawn, {.v = bright_down_small } },
 	{ ShiftMask,                    XF86XK_MonBrightnessUp,   spawn, {.v = bright_up_small } },
+	{ 0,                            XF86XK_Explorer,          spawn, {.v = toggle_multihead } },
 
 	{ MODKEY,                       XK_Home,                  spawn, {.v = cmus_prev } },
 	{ MODKEY,                       XK_End,                   spawn, {.v = cmus_next } },

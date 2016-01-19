@@ -68,6 +68,7 @@ static const char *slockcmd[] = { "slock", NULL };
 static const char *logoutcmd[] = { "dmenu-file", "~/Code/dotfiles/menus/logoff.txt", NULL };
 static const char *appscmd[] = { "dmenu-file", "~/Code/dotfiles/menus/apps.txt", NULL };
 static const char *passcmd[] = { "dmenu-pass", NULL };
+static const char *bmuxcmd[] = { "dmenu-bmux", NULL };
 
 /* media commands */
 static const char *vol_mute[] = { "dm-volume", "mute", NULL };
@@ -122,6 +123,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,        view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,          killclient,     {0} },
 	{ MODKEY,                       XK_t,          setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_t,          spawn,          {.v = bmuxcmd} },
 	{ MODKEY,                       XK_f,          setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,          setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,      setlayout,      {0} },

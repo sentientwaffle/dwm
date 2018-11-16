@@ -150,6 +150,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Down,       shiftview,      {.i = +3} },
 	{ MODKEY|ShiftMask,             XK_q,          quit,           {0} },
 
+	{ 0,                            XK_F1,                    spawn, {.v = vol_mute } },
+	{ 0,                            XK_F2,                    spawn, {.v = vol_down } },
+	{ 0,                            XK_F3,                    spawn, {.v = vol_up } },
+
 	{ 0,                            XF86XK_AudioMute,         spawn, {.v = vol_mute } },
 	{ 0,                            XF86XK_AudioLowerVolume,  spawn, {.v = vol_down } },
 	{ 0,                            XF86XK_AudioRaiseVolume,  spawn, {.v = vol_up } },

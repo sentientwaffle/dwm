@@ -28,7 +28,7 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
-	/* Disabled so that it doesn't go to a tag 1<<8 */
+	/* Disabled so that it doesn't go to tag 1<<8 */
 	/*{ "Firefox",  NULL,       NULL,       1 << 8,       False,       -1 },*/
 };
 
@@ -75,6 +75,8 @@ static const char *bmuxcmd[] = { "dmenu-bmux", NULL };
 static const char *vol_mute[] = { "dm-volume", "mute", NULL };
 static const char *vol_down[] = { "dm-volume", "down", NULL };
 static const char *vol_up[] = { "dm-volume", "up", NULL };
+static const char *vol_down_small[] = { "dm-volume", "mod", "-1", NULL };
+static const char *vol_up_small[] = { "dm-volume", "mod", "+1", NULL };
 static const char *vol_mic[] = { "dm-volume", "mic", NULL };
 
 static const char *bright_down[] = { "dm-backlight", "down", NULL };
@@ -157,6 +159,8 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioMute,         spawn, {.v = vol_mute } },
 	{ 0,                            XF86XK_AudioLowerVolume,  spawn, {.v = vol_down } },
 	{ 0,                            XF86XK_AudioRaiseVolume,  spawn, {.v = vol_up } },
+	{ ShiftMask,                    XF86XK_AudioLowerVolume,  spawn, {.v = vol_down_small } },
+	{ ShiftMask,                    XF86XK_AudioRaiseVolume,  spawn, {.v = vol_up_small } },
 	{ 0,                            XF86XK_AudioMicMute,      spawn, {.v = vol_mic } },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = bright_down } },
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = bright_up } },

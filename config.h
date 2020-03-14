@@ -156,6 +156,8 @@ static Key keys[] = {
 	{ 0,                            XK_F1,                    spawn, {.v = vol_mute } },
 	{ 0,                            XK_F2,                    spawn, {.v = vol_down } },
 	{ 0,                            XK_F3,                    spawn, {.v = vol_up } },
+	{ ShiftMask,                    XK_F2,                    spawn, {.v = vol_down_small } },
+	{ ShiftMask,                    XK_F3,                    spawn, {.v = vol_up_small } },
 
 	{ 0,                            XF86XK_AudioMute,         spawn, {.v = vol_mute } },
 	{ 0,                            XF86XK_AudioLowerVolume,  spawn, {.v = vol_down } },

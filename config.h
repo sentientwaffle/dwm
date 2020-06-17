@@ -66,8 +66,8 @@ static const char *browsercmd[] = { "firefox", NULL };
 static const char *browsercmd_incognito[] = { "firefox", "--private-window", NULL };
 
 static const char *slockcmd[] = { "slock", NULL };
-static const char *logoutcmd[] = { "dmenu-file", "~/Code/dotfiles/menus/logoff.txt", NULL };
-static const char *appscmd[] = { "dmenu-file", "~/Code/dotfiles/menus/apps.txt", NULL };
+static const char *logoutcmd[] = { "dmenu-file", "~/Bootstrap/data/dmenus/logoff.txt", NULL };
+static const char *appscmd[] = { "dmenu-file", "~/Bootstrap/data/dmenus/apps.txt", NULL };
 static const char *passcmd[] = { "dmenu-pass", NULL };
 static const char *bmuxcmd[] = { "dmenu-bmux", NULL };
 

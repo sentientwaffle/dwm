@@ -172,9 +172,11 @@ static Key keys[] = {
 	{ 0,                            XF86XK_Explorer,          spawn, {.v = toggle_multihead } }, /* Lenovo T430/T440 */
 	{ 0,                            XF86XK_Display,           spawn, {.v = toggle_multihead } }, /* Lenovo X1 Carbon 6th gen */
 
+	/*
 	{ MODKEY,                       XK_Home,                  spawn, {.v = cmus_prev } },
 	{ MODKEY,                       XK_End,                   spawn, {.v = cmus_next } },
 	{ MODKEY,                       XK_Delete,                spawn, {.v = cmus_pause } },
+	*/
 };
 
 /* button definitions */
